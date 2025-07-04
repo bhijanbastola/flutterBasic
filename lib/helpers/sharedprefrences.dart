@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todo/models/todoModel.dart';
+import 'package:todo/cv/cv.dart';
+// import 'package:todo/models/todoModel.dart';
 
 class SharedPrefrencesHelper {
   static late SharedPreferences _prefrences;
@@ -9,21 +10,21 @@ class SharedPrefrencesHelper {
     _prefrences = await SharedPreferences.getInstance();
   }
 
-  static Future<void> setStringList(String key, List<String> todoList) async {
-    await _prefrences.setStringList(stringListKey, todoList);
+  static Future<void> setStringList(String key, List<String> cvList) async {
+    await _prefrences.setStringList(stringListKey, cvList);
   }
 
   static List<String> getStringList(String key) {
     return _prefrences.getStringList(stringListKey)??[];
   }
 
-  static Future<void> saveTodo(String key, List<TodoModel> todos) async {
-    List<String> jsonList = todos.map((todo) => todo.convertToJson()).toList();
+  static Future<void> saveCv(String key, List<Cv> todos) async {
+    List<String> jsonList = todos.map((todo) => todo.toJson()).toList();
     await _prefrences.setStringList(key, jsonList);
   }
 
-  static List<TodoModel> loadTodo(String key) {
+  static List<Cv> loadCv(String key) {
     List<String> jsonList = _prefrences.getStringList(key) ?? [];
-    return jsonList.map((json) => TodoModel.fromJson(json)).toList();
+    return jsonList.map((json) => Cv.fromJson(json)).toList();
   }
 }

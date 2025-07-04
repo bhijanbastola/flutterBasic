@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/cv/cvWidget.dart';
 import './todo.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class Myapp extends StatelessWidget {
     return MaterialApp(
       title: 'todo',
       debugShowCheckedModeBanner: false,
-      home:const ToDo(),
+      home: const CvTemplate(),
     );
   }
 }
