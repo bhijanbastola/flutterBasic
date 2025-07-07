@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:todo/cv/cvWidgets.dart';
 
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
+import 'package:todo/helpers/sharedprefrences.dart';
 
-  @override
-  State<MyWidget> createState() => _MyWidgetState();
+void main() async {
+   await SharedPrefrencesHelper.init();
+
+  runApp(const Myapp());
 }
 
-class _MyWidgetState extends State<MyWidget> {
+class Myapp extends StatelessWidget {
+  const Myapp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      title: 'todo',
+      debugShowCheckedModeBanner: false,
+      home: const CvTemplate(),
+    );
   }
 }
