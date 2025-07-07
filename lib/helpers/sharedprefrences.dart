@@ -18,8 +18,8 @@ class SharedPrefrencesHelper {
     return _prefrences.getStringList(stringListKey)??[];
   }
 
-  static Future<void> saveCv(String key, List<Cv> todos) async {
-    List<String> jsonList = todos.map((todo) => todo.toJson()).toList();
+  static Future<void> saveCv(String key, List<Cv> cvs) async {
+    List<String> jsonList = cvs.map((cv) => cv.toJson()).toList();
     await _prefrences.setStringList(key, jsonList);
   }
 
