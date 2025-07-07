@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:todo/cv/cvWidget.dart';
-import './todo.dart';
+import 'package:todo/helpers/sharedprefrences.dart';
 
-void main() {
+void main() async {
+   await SharedPrefrencesHelper.init();
+
   runApp(const Myapp());
 }
 

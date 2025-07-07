@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo/cv/cv.dart';
+import 'package:todo/cv/cvDisplay.dart';
 import 'package:todo/helpers/sharedprefrences.dart';
 
 class CvTemplate extends StatefulWidget {
@@ -21,18 +23,17 @@ class CvTemplateState extends State<CvTemplate> {
   final TextEditingController marriedController = TextEditingController();
 
   final TextEditingController ninNumberController = TextEditingController();
-  bool isMarriedController = false;
-  
+  //bool isMarriedController = false;
+
   List<Cv> cvList = [];
   @override
   void initState() {
     cvList = SharedPrefrencesHelper.loadCv(
       SharedPrefrencesHelper.stringListKey,
     );
-    //log(cvList.length.toString());
+
     super.initState();
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -101,17 +102,15 @@ class CvTemplateState extends State<CvTemplate> {
             //Padding(padding: EdgeInsets.all(0),
             //child: Row(
             children: [
-              Expanded(
-                child: SizedBox(
-                  height: 100,
-                  width: 300,
-                  child: TextFormField(
-                    controller: addressController,
-                    decoration: InputDecoration(
-                      hintText: 'Address',
-                      prefixIcon: Icon(Icons.location_on_sharp),
-                      border: OutlineInputBorder(),
-                    ),
+              SizedBox(
+                height: 100,
+                width: 300,
+                child: TextFormField(
+                  controller: addressController,
+                  decoration: InputDecoration(
+                    hintText: 'Address',
+                    prefixIcon: Icon(Icons.location_on_sharp),
+                    border: OutlineInputBorder(),
                   ),
                 ),
               ),
@@ -186,32 +185,7 @@ class CvTemplateState extends State<CvTemplate> {
                   ),
                 ),
               ),
-              //Text("Marital Status", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-
-              // RadioListTile<String>(
-              //   title: Text('Single'),
-              //   value: 'Single',
-              //   groupValue: marriedController,
-              //   onChanged: (value) {
-              //     setState(() {
-              //       _maritalStatus = value;
-              //     });
-              //   },
-              // ),
-
-              // RadioListTile<String>(
-              //   title: Text('Married'),
-              //   value: 'Married',
-              //   groupValue: _maritalStatus,
-              //   onChanged: (value) {
-              //     setState(() {
-              //       _maritalStatus = value;
-              //     });
-              //   },
-              // ),
-
-              // SizedBox(height: 10),
-              // Text("Selected: $_maritalStatus"),
+              
             ],
           ),
 
@@ -221,14 +195,7 @@ class CvTemplateState extends State<CvTemplate> {
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    // cvList.add(Cv(firstNameController.text.trim()));
-                    // cvList.add(middleNameController.text.trim());
-                    // cvList.add(lastNameController.text.trim());
-                    // cvList.add(addressController.text.trim());
-                    // cvList.add(ageController.text.trim());
-                    // cvList.add(dateTimeController.text.trim());
-                    // cvList.add(ninNumberController.text.trim());
-                    // cvList.add(phoneNumberController.text.trim());
+                    
                     cvList.add(
                       Cv(
                         firstName: firstNameController.text.trim(),
@@ -243,9 +210,9 @@ class CvTemplateState extends State<CvTemplate> {
                     );
                     //setprefrences
                     SharedPrefrencesHelper.saveCv(
-                     SharedPrefrencesHelper.stringListKey,cvList
-                      );
-
+                      SharedPrefrencesHelper.stringListKey,
+                      cvList,
+                    );
                     //
                     firstNameController.clear();
                     middleNameController.clear();
@@ -256,6 +223,12 @@ class CvTemplateState extends State<CvTemplate> {
                     ninNumberController.clear();
                     phoneNumberController.clear();
                   });
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Cvdisplay(cvList: cvList),
+                    ),
+                  );
                 },
                 child: Text("Submit", selectionColor: Colors.lightGreenAccent),
               ),
