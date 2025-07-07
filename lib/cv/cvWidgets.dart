@@ -195,9 +195,9 @@ class CvTemplateState extends State<CvTemplate> {
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    // context.read<userProvider>().changeData(
-                    //   firstname: firstNameController.text,
-                    // );
+                    context.read<userProvider>().changeData(
+                      firstName: firstNameController.text, middleName: middleNameController.text, lastName: lastNameController.text, phoneNumber: lastNameController.text, address: addressController.text, age: ageController.text, dateTime: dateTimeController.text, ninNumber:ninNumberController.text ,
+                    );
                     FocusManager.instance.primaryFocus?.unfocus();
                     
 
