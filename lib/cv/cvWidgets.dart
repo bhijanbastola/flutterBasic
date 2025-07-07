@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo/cv/cv.dart';
 import 'package:todo/cv/cvDisplay.dart';
+import 'package:todo/cv/provider/provider.dart';
 import 'package:todo/helpers/sharedprefrences.dart';
 
 class CvTemplate extends StatefulWidget {
@@ -185,7 +186,6 @@ class CvTemplateState extends State<CvTemplate> {
                   ),
                 ),
               ),
-              
             ],
           ),
 
@@ -195,7 +195,12 @@ class CvTemplateState extends State<CvTemplate> {
               ElevatedButton(
                 onPressed: () {
                   setState(() {
+                    // context.read<userProvider>().changeData(
+                    //   firstname: firstNameController.text,
+                    // );
+                    FocusManager.instance.primaryFocus?.unfocus();
                     
+
                     cvList.add(
                       Cv(
                         firstName: firstNameController.text.trim(),
